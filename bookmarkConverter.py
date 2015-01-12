@@ -27,17 +27,12 @@ def convert(lines, debug=False):
 			break
 		elif lines[x] == '' or lines[x] == '-':
 			x=x+1
-			if debug:
-				print "no....."
-
 
 		elif lines[x].startswith("#FOLDER"):
+			# Ignore two lines
 			x=x+2
 
-			foldername = lines[x][5:]
-			foldername = foldername[:-2]
-			foldername = removeStuff(foldername)
-
+			foldername = removeStuff(lines[x][6:])
 			folders.append({'name': foldername, 'items': []})
 
 			if debug:
@@ -47,6 +42,8 @@ def convert(lines, debug=False):
 
 		elif lines[x].startswith("#URL"):
 			b={'name':'', 'url':'', 'description':''}
+
+			# Ignore two lines
 			x=x+2
 
 			#NAME=
