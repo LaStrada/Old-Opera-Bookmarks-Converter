@@ -1,3 +1,6 @@
+import getopt
+import sys
+
 def removeTabs(str):
 	for i, line in enumerate(str):
 		line.replace("	", "");
@@ -11,7 +14,6 @@ def removeStuff(str):
 
 	return str
 
-#1089
 def convert(lines, debug=False):
 	numberOfLines = len(lines)
 	x=0
@@ -109,9 +111,52 @@ def generateHTML(folders):
 	return str
 
 
+def usage():
+	print "-h\t--help\t\tShow this."
+	print "-i\t--input\t\tInput file"
+	print "-o\t--output\tOutput file"
+
+	sys.exit(2)
+
+
 def main():
-	filename = raw_input('Read file: ')
-	new_file = raw_input('New file: ')
+	# filename = raw_input('Read file: ')
+	# new_file = raw_input('New file: ')
+
+	try:
+		opts, args = getopt.getopt(sys.argv[1:], "hi:o:", ["help", "input=", "output="])
+	except getopt.GetoptError as err:
+		# print help information and exit:
+		print(err) # will print something like "option -a not recognized"
+		usage()
+		sys.exit(2)
+
+	filename = ''
+	new_file = ''
+
+	output = None
+	verbose = False
+
+	for o, a in opts:
+		if o == "-v":
+			verbose = True
+		elif o in ("-h", "--help"):
+			usage()
+			sys.exit()
+		elif o in ("-i", "--input"):
+			filename = a
+		elif o in ("-o", "--output"):
+			new_file = a
+		else:
+			assert False, "unhandled option"
+
+	if filename == '':
+		print "No input file."
+		sys.exit(2)
+	elif new_file == '':
+		print "No output file."
+		sys.exit(2)
+
 	f=open(filename)
 	lines=f.readlines()
 
@@ -125,25 +170,3 @@ def main():
 
 if __name__ == "__main__":
 	main()
-
-
-'''
-folder format
-
-#FOLDER
-ID=137
-NAME=Opera
-CREATED=1358866163
-PARTNERID=opera-operafolder
-EXPANDED=
-UNIQUEID=
-
-
-#URL
-ID=
-NAME=
-URL=
-CREATED=
-VISITED=
-DESCRIPTION=
-'''
