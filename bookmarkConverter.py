@@ -112,6 +112,7 @@ def generateHTML(folders):
 
 
 def usage():
+	print
 	print "-h\t--help\t\tShow this."
 	print "-i\t--input\t\tInput file"
 	print "-o\t--output\tOutput file"
@@ -124,7 +125,7 @@ def main():
 	# new_file = raw_input('New file: ')
 
 	try:
-		opts, args = getopt.getopt(sys.argv[1:], "hi:o:", ["help", "input=", "output="])
+		opts, args = getopt.getopt(sys.argv[1:], "h?i:o:", ["help", "input=", "output="])
 	except getopt.GetoptError as err:
 		# print help information and exit:
 		print(err) # will print something like "option -a not recognized"
@@ -140,7 +141,7 @@ def main():
 	for o, a in opts:
 		if o == "-v":
 			verbose = True
-		elif o in ("-h", "--help"):
+		elif o in ("-?", "-h", "--help"):
 			usage()
 			sys.exit()
 		elif o in ("-i", "--input"):
@@ -151,10 +152,14 @@ def main():
 			assert False, "unhandled option"
 
 	if filename == '':
+		print
 		print "No input file."
+		usage()
 		sys.exit(2)
 	elif new_file == '':
+		print
 		print "No output file."
+		usage()
 		sys.exit(2)
 
 	f=open(filename)
