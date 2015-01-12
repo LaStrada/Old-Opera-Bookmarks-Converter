@@ -34,6 +34,7 @@ def convert(lines, debug=False):
 
 			foldername = lines[x][5:]
 			foldername = foldername[:-2]
+			foldername = removeStuff(foldername)
 
 			folders.append({'name': foldername, 'items': []})
 
@@ -47,11 +48,11 @@ def convert(lines, debug=False):
 			x=x+2
 
 			#NAME=
-			b['name'] = lines[x][5:]
+			b['name'] = removeStuff(lines[x])[5:]
 			x=x+1
 
 			#URL
-			b['url'] = lines[x][4:]
+			b['url'] = removeStuff(lines[x])[4:]
 			x=x+1
 			
 			#CREATED - ignore
@@ -61,7 +62,7 @@ def convert(lines, debug=False):
 			x=x+1
 
 			#DESCRIPTION
-			b['description'] = lines[x][11:]
+			# b['description'] = lines[x][11:]
 			x=x+1
 
 			#UNIQUEID - ignore
@@ -84,7 +85,7 @@ def generateHTML(folders):
 	
 	for x in folders:
 		str += '\t<DT><H3 FOLDED>'
-		str += removeStuff(x['name'])
+		str += x['name']
 		str += '</H3>\n'
 
 		if x['name'] != '' and x['name'] != "N/A":
@@ -95,9 +96,9 @@ def generateHTML(folders):
 				str += '\t\t<DT><A HREF="'
 			else:
 				str += '\t<DT><A HREF="'
-			str += removeStuff(z['url'])
+			str += z['url']
 			str += '">'
-			str += removeStuff(z['name'])
+			str += z['name']
 			str += '</A>\n'
 
 		if x['name'] != '' and x['name'] != "N/A":
