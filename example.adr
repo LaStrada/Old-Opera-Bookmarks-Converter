@@ -1,0 +1,39 @@
+Opera Hotlist version 2.0
+Options: encoding = utf8, version=3
+
+#URL
+	ID=xxx
+	NAME=Random Name
+	URL=http://url.com
+	CREATED=xxx
+	ON PERSONALBAR=xxx
+	PERSONALBAR_POS=xxx
+	UNIQUEID=xxx
+
+#URL
+	ID=26
+	NAME=Facebook
+	URL=http://www.facebook.com
+	CREATED=xxx
+	SHORT NAME=Facebook
+	ON PERSONALBAR=xxx
+	PERSONALBAR_POS=xxx
+	UNIQUEID=xxx
+
+
+#FOLDER
+	ID=xxx
+	NAME=Folder Name
+	CREATED=xxx
+	EXPANDED=xxx
+	UNIQUEID=xxxx
+
+#URL
+	ID=xxx
+	NAME=NRK
+	URL=https://www.norsk-tipping.no/
+	CREATED=xxx
+	VISITED=xxx
+	ON PERSONALBAR=xxx
+	PERSONALBAR_POS=xxx
+	UNIQUEID=xxx
