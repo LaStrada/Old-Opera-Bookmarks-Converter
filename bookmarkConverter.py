@@ -77,33 +77,51 @@ def convert(lines, debug=False):
 def generateHTML(folders):
 	x=0
 	str =  '<!DOCTYPE NETSCAPE-Bookmark-file-1>\n'
-	str += '\t<HTML>\n'
+	str += '<HTML>\n'
+	str += '<HEAD>\n'
 	str += '\t<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">\n'
 	str += '\t<Title>Bookmarks</Title>\n'
+	str += '</HEAD>\n'
+	str += '<BODY>\n'
+	str += '\t<H1>Bookmarks</H1>\n'
+	str += '\t<DL>\n'
 
 	
 	for x in folders:
-		str += '\t<DT><H3 FOLDED>'
-		str += x['name']
-		str += '</H3>\n'
-
-		if x['name'] != '' and x['name'] != "N/A":
-			str += '\t\t<DL><p>\n'
-
+		if x['name'].lower() == 'papirkurv':
+			continue
+		# elif x['name'] != '' and x['name'] != "N/A":
+		# 	str += '\t\t<DT>\n'
+		# 	str += '\t\t\t<H3>'
+		# 	str += x['name']
+		# 	str += '</H3>\n'
+		# 	str += '\t\t\t<DL>\n'
+		# 	str += '\t\t\t\t<p> </p>\n'
+		# else:
+		# 	str += '\t\t<p> </p>\n'
+		# 
 		for z in x['items']:
-			if x['name'] != '' and x['name'] != "N/A":	
-				str += '\t\t<DT><A HREF="'
-			else:
-				str += '\t<DT><A HREF="'
+		# 	if x['name'] != '' and x['name'] != "N/A":	
+		# 		str += '\t\t\t\t<DT><A HREF="'
+		# 	else:
+		# 		str += '\t\t<DT><A HREF="'
+
+			str += '\t\t<DT><A HREF="'
 			str += z['url']
 			str += '">'
 			str += z['name']
-			str += '</A>\n'
+			str += '</A></DT>\n'
 
-		if x['name'] != '' and x['name'] != "N/A":
-			str += '\t</p></DL>\n'
+		# if x['name'] != '' and x['name'] != "N/A":
+		# 	str += '\t\t\t\t<p> </p>\n'
+		# 	str += '\t\t\t</DL>\n'
+		# 	str += '\t\t</DT>\n'
+		#
+		# str += '\t\t<p> </p>\n'
 
-	str += '</HTML>'
+	str += '\t\t</DL>\n'
+	str += '\t</BODY>\n'
+	str += '</HTML>\n'
 
 	return str
 
